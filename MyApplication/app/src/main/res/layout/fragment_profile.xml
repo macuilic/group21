@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="layout.Tournaments"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:gravity="center_horizontal"
+        android:textSize="48sp"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100sp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_ggleagues"/>
+        <Button
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:gravity="center_horizontal"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
