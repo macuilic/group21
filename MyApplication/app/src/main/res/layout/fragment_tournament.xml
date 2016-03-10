@@ -8,46 +8,49 @@
     tools:context="layout.Tournaments"
     android:orientation="vertical">
 
-    <TabHost
-        android:id="@android:id/tabhost"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        >
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            >
 
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                />
-
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="0"/>
-
-            <FrameLayout
-                android:id="@+id/realtabcontent"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
-        </LinearLayout>
-    </TabHost>
-
-    <TextView
+    <Button
+        android:id="@+id/filterButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tournaments"
-        android:gravity="center_horizontal"
-        android:textSize="48sp"/>
+        android:text="Filters"
+        android:textSize="24dp"
+        android:drawableRight="@drawable/menu_down"
+        android:background="?android:attr/selectableItemBackground"
+        android:textAllCaps="false"
+        android:textAlignment="textStart"
+        android:layout_gravity="start"
+        />
+    <!--The layout below contains the filters-->
 
+    <LinearLayout
+        android:id="@+id/filters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/hideFilterButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:clickable="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu_up"
+                android:adjustViewBounds="true"
+                android:scaleType="center"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="4dip"
+        android:background="?android:attr/dividerHorizontal"
+        android:layout_alignParentTop="true"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
