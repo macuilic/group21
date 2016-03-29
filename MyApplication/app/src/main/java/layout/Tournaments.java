@@ -36,8 +36,12 @@ public class Tournaments extends Fragment {
     TabHost mTabHost;
     Filter[] filters;
 
+    String name, game, region;
+
+
     public Tournaments() {
         // Required empty public constructor
+
     }
 
 
