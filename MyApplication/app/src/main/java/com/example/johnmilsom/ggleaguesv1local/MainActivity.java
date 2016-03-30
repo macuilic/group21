@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity
             Profile frag = new Profile();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, frag);
+            fragmentTransaction.replace(R.id.fragment_container, new ProfileTabs());
             fragmentTransaction.commit();
         } else if (id == R.id.nav_chat) {
 
