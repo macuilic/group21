@@ -128,7 +128,7 @@ public class fragement_profile_login extends Fragment implements View.OnClickLis
                     localDatabase.storeData(returnedcontact);
                     localDatabase.setUserLoggedIn(true);
 
-                    Intent i = new Intent(getContext(), Profile.class);
+                    Intent i = new Intent(getContext(), MainActivity.class);
                     startActivity(i);
 
                 }
@@ -144,6 +144,8 @@ public class fragement_profile_login extends Fragment implements View.OnClickLis
         Contact contact = new Contact(username, password);
 
         authenticate(contact);
+
+
     }
 
     /**
