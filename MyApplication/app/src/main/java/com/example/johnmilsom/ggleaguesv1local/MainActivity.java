@@ -107,12 +107,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_tournaments) {
+        if (id == R.id.nav_allTournaments) {
             getSupportActionBar().setTitle("Tournaments");
             Tournaments tourFrag = new Tournaments();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, tourFrag);
+            fragmentTransaction.commit();
+        }else if(id == R.id.nav_myTournaments){
+            getSupportActionBar().setTitle("My Tournaments");
+            Tournaments myTourFrag = new Tournaments();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, myTourFrag);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_profile) {
             getSupportActionBar().setTitle("Profile");
