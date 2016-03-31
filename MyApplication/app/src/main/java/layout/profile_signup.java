@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class profile_signup extends Fragment implements View.OnClickListener{
 
 
     EditText etfirstname, etlastname, etusername, etemail, etpassword1, etpassword2;
+    Button signup;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,12 +80,16 @@ public class profile_signup extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_profile_signup, container, false);
+
         etusername = (EditText)view.findViewById(R.id.TFsignup_uname);
         etemail = (EditText)view.findViewById(R.id.TFsignup_email);
         etfirstname = (EditText)view.findViewById(R.id.TFsignup_fname);
         etlastname = (EditText)view.findViewById(R.id.TFsignup_lname);
         etpassword1 = (EditText)view.findViewById(R.id.TFsignup_pass1);
         etpassword2 = (EditText)view.findViewById(R.id.TFsignup_pass2);
+
+        signup = (Button) view.findViewById(R.id.Bsignup);
+        signup.setOnClickListener(this);
 
         return view;
     }

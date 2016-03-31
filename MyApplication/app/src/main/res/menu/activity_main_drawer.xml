@@ -22,6 +22,14 @@
             android:id="@+id/nav_login"
             android:icon="@drawable/ic_menu_profile"
             android:title="Log In" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_profile"
+            android:title="Log Out" />
+        <item
+            android:id="@+id/nav_signup"
+            android:icon="@drawable/ic_menu_profile"
+            android:title="Sign Up" />
     </group>
 <!--
     <item android:title="Communicate">

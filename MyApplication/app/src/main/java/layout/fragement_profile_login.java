@@ -78,6 +78,7 @@ public class fragement_profile_login extends Fragment implements View.OnClickLis
 
         etusername = (EditText)view.findViewById(R.id.TFlogin_uname);
         etpassword = (EditText)view.findViewById(R.id.TFlogin_pass);
+
         onLogin = (Button) view.findViewById(R.id.Blogin);
         onLogin.setOnClickListener(this);
 
