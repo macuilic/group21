@@ -8,61 +8,72 @@
     tools:context="layout.Tournaments"
     android:orientation="vertical">
 
-
-    <Button
-        android:id="@+id/filterButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Filters"
-        android:textSize="24dp"
-        android:drawableRight="@drawable/menu_down"
-        android:background="?android:attr/selectableItemBackground"
-        android:textAllCaps="false"
-        android:textAlignment="textStart"
-        android:layout_gravity="start"
-        />
-    <!--The layout below contains the filters-->
-
     <LinearLayout
-        android:id="@+id/filters"
+        android:orientation="vertical"
+        android:id="@+id/list_and_filters"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
-            android:id="@+id/hideFilterButton"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/filterButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:clickable="true">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/menu_up"
-                android:adjustViewBounds="true"
-                android:scaleType="center"
-                android:layout_gravity="center_horizontal"/>
-        </LinearLayout>
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dip"
-        android:layout_marginLeft="4dip"
-        android:layout_marginRight="4dip"
-        android:background="?android:attr/dividerHorizontal"
-        android:layout_alignParentTop="true"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/scrollView" >
+            android:text="Filters"
+            android:textSize="24dp"
+            android:drawableRight="@drawable/menu_down"
+            android:background="?android:attr/selectableItemBackground"
+            android:textAllCaps="false"
+            android:textAlignment="textStart"
+            android:layout_gravity="start"
+            />
+        <!--The layout below contains the filters-->
 
-        <GridLayout
-            android:id="@+id/tourGrid"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/filters"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="2">
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/hideFilterButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:clickable="true">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/menu_up"
+                    android:adjustViewBounds="true"
+                    android:scaleType="center"
+                    android:layout_gravity="center_horizontal"/>
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
+            android:background="?android:attr/dividerHorizontal"
+            android:layout_alignParentTop="true"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView" >
 
-        </GridLayout>
-    </ScrollView>
+            <LinearLayout
+                android:id="@+id/tourList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/tour_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 </LinearLayout>
