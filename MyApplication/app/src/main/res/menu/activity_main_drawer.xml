@@ -18,6 +18,18 @@
             android:id="@+id/nav_mediacenter"
             android:icon="@drawable/ic_menu_mediacenter"
             android:title="Media Center" />
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/happy"
+            android:title="Log In" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/power"
+            android:title="Log Out" />
+        <item
+            android:id="@+id/nav_signup"
+            android:icon="@drawable/clipboard"
+            android:title="Sign Up" />
     </group>
 <!--
     <item android:title="Communicate">

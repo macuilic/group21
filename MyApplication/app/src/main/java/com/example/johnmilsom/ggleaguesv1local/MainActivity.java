@@ -1,6 +1,7 @@
 package com.example.johnmilsom.ggleaguesv1local;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,11 +13,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import layout.LocalDatabase;
 import layout.Profile;
 import layout.Tournaments;
+import layout.fragement_profile_login;
+import layout.profile_signup;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        fragement_profile_login.OnFragmentInteractionListener,
+        profile_signup.OnFragmentInteractionListener
+
+{
     NavigationView navigationView;
     Toolbar toolbar;
     @Override
@@ -116,10 +124,33 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_mediacenter) {
 
+        }else  if (id == R.id.nav_login){
+            getSupportActionBar().setTitle("Log In");
+            fragement_profile_login loginFrag = new fragement_profile_login();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, loginFrag);
+            fragmentTransaction.commit();
+        }else if (id == R.id.nav_logout){
+            LocalDatabase localDatabase = new LocalDatabase(this);
+            localDatabase.clearData();
+            localDatabase.setUserLoggedIn(false);
+
+        }else if (id == R.id.nav_signup){
+            getSupportActionBar().setTitle("Sign Up");
+            profile_signup signupFrag = new profile_signup();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, signupFrag);
+            fragmentTransaction.commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }
