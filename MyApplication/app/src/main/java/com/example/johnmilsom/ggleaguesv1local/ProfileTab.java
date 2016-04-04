@@ -1,10 +1,5 @@
 package com.example.johnmilsom.ggleaguesv1local;
 
-/**
- * Created by lgill on 3/21/16.
- */
-
-import android.gesture.GestureOverlayView;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -20,7 +15,7 @@ import layout.Friends;
 import layout.Overview;
 import layout.Profile;
 
-public class ProfileTabs extends Fragment {
+public class ProfileTab extends Fragment {
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
@@ -73,8 +68,8 @@ public class ProfileTabs extends Fragment {
         {
             switch (position){
                 case 0 : return new Profile();
-                case 1 : return new Overview();
-                case 2 : return new Friends();
+                case 1 : return new Friends();
+                case 2 : return new Overview();
             }
             return null;
         }
@@ -97,12 +92,12 @@ public class ProfileTabs extends Fragment {
                 case 0 :
                     return "Profile";
                 case 1 :
-                    return "Overview";
-                case 2 :
                     return "Friends";
+                case 2 :
+                    return "Overview";
             }
             return null;
         }
     }
-}
 
+}

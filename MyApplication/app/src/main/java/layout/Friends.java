@@ -18,7 +18,6 @@ import com.example.johnmilsom.ggleaguesv1local.R;
  */
 public class Friends extends Fragment {
 
-
     public Friends() {
         // Required empty public constructor
     }
@@ -27,8 +26,8 @@ public class Friends extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_friends, container, false);
-    }
 
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_friend_friends, container, false);
+    }
 }
