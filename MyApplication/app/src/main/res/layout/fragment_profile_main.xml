@@ -1,3 +1,4 @@
+<!-- Xml to design layout for the main screen for the current users profiel -->
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,12 +10,12 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Generates RelativeLayout for top of the screen-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="213dp"
         android:background="#3044b8">
-
+        <!--Text view to create title My Profile-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,7 +27,8 @@
             android:layout_alignParentStart="true"
             android:id="@+id/textView2"
             android:textColor="#000000" />
-
+            
+        <!--ImageView to display users profile picture-->
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -36,6 +38,8 @@
             android:layout_centerHorizontal="true"
             android:id="@+id/imageView2"
             android:cropToPadding="false" />
+            
+        <!--Display current user's name-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -50,10 +54,11 @@
             android:textColor="#000000" />
     </RelativeLayout>
 
+    <!--Generates Relative layout for bottom half of the screen -->
     <RelativeLayout
         android:layout_width="395dp"
         android:layout_height="match_parent">
-
+        <!-- Displays Title "Recent Activity" -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +70,7 @@
             android:gravity="left"
             android:textColor="#000000"
             android:id="@+id/textView5" />
-
+        <!--Displays recent activity of user -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
