@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <!-- Generates Relative layour for the screen-->
+    <!-- Generates Relative layout for the top of screen-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="213dp"
