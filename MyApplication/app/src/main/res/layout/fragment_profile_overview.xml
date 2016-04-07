@@ -1,3 +1,4 @@
+<!--Xml to design layout for the user overview section of the Profile ->
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,12 +10,13 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Generates Relative layour for the screen->
 
     <RelativeLayout
         android:layout_width="395dp"
         android:layout_height="match_parent">
-
+    
+        <-- Generates a text view titling the Overview section -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,7 +28,7 @@
             android:gravity="left"
             android:textColor="#000000"
             android:id="@+id/textView5" />
-
+        <!-- ImageView titles the about me section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,7 +42,7 @@
             android:layout_marginStart="50dp"
             android:textSize="28dp"
             android:layout_marginTop="20dp" />
-
+        <!-- Displays the personal description of the user -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,7 +52,8 @@
             android:layout_below="@+id/textView15"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="25dp" />
-
+        
+        <!--Generate "City" title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,7 +65,8 @@
             android:layout_alignLeft="@+id/textView15"
             android:layout_alignStart="@+id/textView15"
             android:layout_marginTop="20dp" />
-
+        
+        <!--Displays users city of residence-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,6 +77,7 @@
             android:layout_alignLeft="@+id/textView16"
             android:layout_alignStart="@+id/textView16" />
 
+        <!-- Display title "Gender" -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,7 +90,7 @@
             android:layout_alignStart="@+id/textView17"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="20dp" />
-
+        <!-- Displays users choosen gender -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
