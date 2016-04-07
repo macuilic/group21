@@ -13,7 +13,7 @@ public class LocalDatabase {
 
 
         public static final String SP_NAME = "UserDetails";
-        SharedPreferences localDatabase;
+        SharedPreferences localDatabase;                // Allows us to save data locally to the phone.
 
     /**
      * Constructor
