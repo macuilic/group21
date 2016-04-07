@@ -26,7 +26,6 @@ import java.util.Map;
  *      created it.
  *      Volley creates a request to the server that needs to be added to a queue.
  *          - This follows the volley standard.
- * 
  */
 public class Tour_Server_Request {
 
