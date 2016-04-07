@@ -1,3 +1,4 @@
+<!-- XMl to design layout for a strangers profile view-->
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,12 +10,12 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Generates Relative layour for the screen-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="213dp"
         android:background="#3044b8">
-
+        <!-- Generates a ImageView displaying their profile picture-->
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -24,6 +25,8 @@
             android:cropToPadding="false"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
+            
+        <!-- Generates a TextView displaying their username-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -38,6 +41,7 @@
             android:textColor="#000000" />
     </RelativeLayout>
 
+    <!-- Generate Layout for bottom half of the screen -->
     <RelativeLayout
         android:layout_width="395dp"
         android:layout_height="match_parent">
@@ -53,19 +57,19 @@
             android:gravity="left"
             android:textColor="#000000"
             android:id="@+id/textView5" />
-
+        <!-- Display strangers personal description -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Hi my name&apos;s Dave and I like to party."
+            android:text="Hi my name&apos;s Jim and I like to play games."
             android:id="@+id/textView4"
             android:layout_below="@+id/textView5"
             android:layout_alignLeft="@+id/button2"
             android:layout_alignStart="@+id/button2"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
-
+        <!-- Button to allow user to block stranger -->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,7 +78,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignLeft="@+id/textView24"
             android:layout_alignStart="@+id/textView24" />
-
+        <!-- Button to allow user to add stranger as friend -->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,7 +90,7 @@
             android:layout_marginLeft="48dp"
             android:layout_marginStart="48dp"
             android:layout_alignTop="@+id/button" />
-
+        <!-- Following text and image views show examples of friends the stranger has -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
