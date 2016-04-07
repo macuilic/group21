@@ -60,18 +60,21 @@ public class Tournaments extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         LinearLayout tourList = (LinearLayout) getView().findViewById(R.id.tourList);
+        //declaring layout to hold the actual filter options, then hiding it
+        //it will be shown when the "filterButton" in the tournament fragment is clicked, and the button will be hidden
         final LinearLayout filterLayout = (LinearLayout)getView().findViewById(R.id.filters);
         filterLayout.setVisibility(View.GONE);
         setupFilters();
 
-
+        //create array of layouts that will act as items in a list of tournaments, when cliked they will open the tournament's details
         LinearLayout[] myButtons = new LinearLayout[20];
         for (int i = 0; i < myButtons.length;i++){
             final LinearLayout n = tourListItem("Name", "01/12/2016", "32/40", "EU");
-            tourList.addView(n);
+            tourList.addView(n);        //adding to the list viewer in the fragment
             n.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
+                    //setting clickables for list items
                     boolean down = false;
                     boolean up = false;
                     boolean drag = false;
@@ -86,22 +89,25 @@ public class Tournaments extends Fragment {
                             drag = true;
                     }
                     if (down && !drag) {
+                        //setting colour on press but not scroll
                         n.setBackgroundColor(Color.LTGRAY);
                     } else {
+                        //setting colour back to transparent for if dragged or released
                         n.setBackgroundColor(Color.TRANSPARENT);
                     }
 
                     if (up) {
-                        //open tournament fragment
+                        //open tournament details fragment (TournamentView)
                         TournamentView tourFrag= new TournamentView();
                         android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.fragment_container, tourFrag);
-                        fragmentTransaction.addToBackStack("myscreen");         //adding to "backstack" for when back button is pressed
+                        fragmentTransaction.addToBackStack("myscreen");    //adding to "backstack" for when back button is pressed
                         fragmentTransaction.commit();
                     }
                     return false;
                 }
             });
+            //added to list for further access if neccessary
             myButtons[i] = n;
         }
 
@@ -109,22 +115,22 @@ public class Tournaments extends Fragment {
 
         filterButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //hiding "filterButton" and show filters
                 filterButton.setVisibility(View.GONE);
                 filterLayout.setVisibility(View.VISIBLE);
-
             }});
         final LinearLayout hideFilters = (LinearLayout)getView().findViewById(R.id.hideFilterButton);
         hideFilters.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //hide filerts and show "filterButton"
                 filterButton.setVisibility(View.VISIBLE);
                 filterLayout.setVisibility(View.GONE);
-
             }});
     }
 
     public void setupFilters(){
         Filter[] filters = new Filter[2];
-
+        //example filters as backend has not been implemented yet
         String[] games = {"All", "CSGO", "Hearthstone", "DOTA", "League of Legends"};
         String[] regions = {"All", "EUW", "NA", "RU", "EUNE"};
         filters[0] = new Filter("Game", games);
@@ -146,6 +152,7 @@ public class Tournaments extends Fragment {
         }
     }
 
+    //Filter class to simplify fields in a single filter
     public class Filter{
         private String filterName;
         private String[] options;
@@ -160,6 +167,8 @@ public class Tournaments extends Fragment {
             return options;
         }
     }
+
+    //tournament list item class, each item is displayed with the following 4 parameters on screen.
     public LinearLayout tourListItem(String name, String startDate, String players, String region){
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
