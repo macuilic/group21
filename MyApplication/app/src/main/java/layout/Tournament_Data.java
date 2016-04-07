@@ -7,6 +7,11 @@ import java.text.SimpleDateFormat;
 
 /**
  * Created by Conor on 02/04/2016.
+ * 
+ *      Class creates Tournament_Data object that stores information about a tournament.
+ *      Getters allow us to retrieve the information about the tournament.
+ *          - This stops data injection, and manipulation of data.
+ *      Setters are used for testing.
  */
 
 public class Tournament_Data {
