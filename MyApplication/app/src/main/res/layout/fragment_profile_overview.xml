@@ -1,4 +1,4 @@
-<!--Xml to design layout for the user overview section of the Profile ->
+<!--Xml to design layout for the user overview section of the Profile -->
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
