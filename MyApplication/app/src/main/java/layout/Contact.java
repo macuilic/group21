@@ -2,7 +2,10 @@ package layout;
 
 /**
  * Created by Lotte on 29.03.2016.
- * Contact class containing user data
+ * Contact class containing user data.
+ * Contact can be made two ways:
+ *      By signing up, and providing the relevant information.
+ *      By logging in in order to save data to the app.
  */
 public class Contact {
 
