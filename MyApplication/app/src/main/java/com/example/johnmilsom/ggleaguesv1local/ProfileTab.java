@@ -36,12 +36,6 @@ public class ProfileTab extends Fragment {
          */
         viewPager.setAdapter(new MyAdapter(getChildFragmentManager()));
 
-        /**
-         * Now , this is a workaround ,
-         * The setupWithViewPager dose't works without the runnable .
-         * Maybe a Support Library Bug .
-         */
-
         tabLayout.post(new Runnable() {
             @Override
             public void run() {
