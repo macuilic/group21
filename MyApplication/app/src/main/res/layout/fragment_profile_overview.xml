@@ -10,13 +10,13 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <!-- Generates Relative layour for the screen->
+    <!-- Generates Relative layour for the screen -->
 
     <RelativeLayout
         android:layout_width="395dp"
         android:layout_height="match_parent">
     
-        <-- Generates a text view titling the Overview section -->
+        <!-- Generates a text view titling the Overview section -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
