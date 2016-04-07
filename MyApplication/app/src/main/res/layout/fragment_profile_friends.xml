@@ -1,3 +1,5 @@
+
+<!-- Layout for the fragment of a friends profile, displaying a list of their friends -->
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,12 +11,11 @@
     android:orientation="vertical"
     android:weightSum="1">
 
-    <!-- TODO: Update blank fragment layout -->
-
+<!-- Generates relative layout for the file -->
     <RelativeLayout
         android:layout_width="395dp"
         android:layout_height="match_parent">
-
+        <!-- Text box dipsplaying title "Friends" -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,6 +28,8 @@
             android:textColor="#000000"
             android:id="@+id/textView5" />
 
+        <!-- The following ImageViews and TextViews are examples showing where the username and profile picture of other users
+             would go -->
         <ImageView
             android:layout_width="75dp"
             android:layout_height="75dp"
