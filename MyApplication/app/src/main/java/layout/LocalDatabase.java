@@ -5,19 +5,29 @@ import android.content.SharedPreferences;
 
 /**
  * Created by Lotte on 29.03.2016.
+ * Local Database to track the Loged In User Data
+ *
  */
 public class LocalDatabase {
-
 
 
 
         public static final String SP_NAME = "UserDetails";
         SharedPreferences localDatabase;
 
+    /**
+     * Constructor
+     * @param context
+     */
         public  LocalDatabase (Context context){
             localDatabase = context.getSharedPreferences(SP_NAME, 0);
         }
 
+    /**
+     * Stores the data from the logged in user
+     *
+     * @param contact contains the information of the user, pulled from the database
+     */
         public void storeData(Contact contact){
             SharedPreferences.Editor spEditor = localDatabase.edit();
             spEditor.putString("FirstName", contact.firstname);
@@ -31,6 +41,10 @@ public class LocalDatabase {
 
         }
 
+    /**
+     * Returns the currently logged in user
+     * @return the contact data of the user
+     */
         public Contact getLoggedInUser(){
 
             String uname = localDatabase.getString("Username", "");
@@ -59,6 +73,10 @@ public class LocalDatabase {
 
         }
 
+    /**
+     * used to log out the user
+     * clears all data
+     */
         public  void clearData(){
             SharedPreferences.Editor spEditor = localDatabase.edit();
             spEditor.clear();

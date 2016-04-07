@@ -25,6 +25,9 @@ import com.example.johnmilsom.ggleaguesv1local.R;
  * create an instance of this fragment.
  */
 
+/**
+ * Fragment for Sign Up
+ */
 
 
 public class profile_signup extends Fragment implements View.OnClickListener{
@@ -33,12 +36,12 @@ public class profile_signup extends Fragment implements View.OnClickListener{
     EditText etfirstname, etlastname, etusername, etemail, etpassword1, etpassword2;
     Button signup;
 
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
 
@@ -56,7 +59,7 @@ public class profile_signup extends Fragment implements View.OnClickListener{
      * @param param2 Parameter 2.
      * @return A new instance of fragment profile_signup.
      */
-    // TODO: Rename and change types and number of parameters
+
     public static profile_signup newInstance(String param1, String param2) {
         profile_signup fragment = new profile_signup();
         Bundle args = new Bundle();
@@ -66,7 +69,7 @@ public class profile_signup extends Fragment implements View.OnClickListener{
         return fragment;
     }
 
-    @Override
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -75,12 +78,19 @@ public class profile_signup extends Fragment implements View.OnClickListener{
         }
     }
 
-    @Override
+    /**
+     * method called when fragment is created
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_profile_signup, container, false);
 
+        //fetch user data from text fields
         etusername = (EditText)view.findViewById(R.id.TFsignup_uname);
         etemail = (EditText)view.findViewById(R.id.TFsignup_email);
         etfirstname = (EditText)view.findViewById(R.id.TFsignup_fname);
@@ -88,13 +98,14 @@ public class profile_signup extends Fragment implements View.OnClickListener{
         etpassword1 = (EditText)view.findViewById(R.id.TFsignup_pass1);
         etpassword2 = (EditText)view.findViewById(R.id.TFsignup_pass2);
 
+        //set listener for sign up button
         signup = (Button) view.findViewById(R.id.Bsignup);
         signup.setOnClickListener(this);
 
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -118,7 +129,10 @@ public class profile_signup extends Fragment implements View.OnClickListener{
         mListener = null;
     }
 
-    @Override
+    /**
+     * Listener for the sign up button
+     * @param v
+     */
     public void onClick(View v) {
         String firstname = etfirstname.getText().toString();
         String lastname = etlastname.getText().toString();
@@ -128,7 +142,7 @@ public class profile_signup extends Fragment implements View.OnClickListener{
         String pass2 = etpassword2.getText().toString();
 
         Contact contact;
-
+        //check if passwords match
         if (pass1.equals(pass2)){
 
             contact = new Contact(firstname,lastname,username,email,pass1);

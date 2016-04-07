@@ -26,15 +26,19 @@ import com.example.johnmilsom.ggleaguesv1local.R;
  * create an instance of this fragment.
  *
  */
+
+/**
+ * Fragment for the Login
+ * Displays the Login page
+ */
 public class fragement_profile_login extends Fragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     Button onLogin;
 
-    // TODO: Rename and change types of parameters
     EditText etusername;
     EditText  etpassword;
 
@@ -50,7 +54,7 @@ public class fragement_profile_login extends Fragment implements View.OnClickLis
      * @param param2 Parameter 2.
      * @return A new instance of fragment fragement_profile_login.
      */
-    // TODO: Rename and change types and number of parameters
+
     public static fragement_profile_login newInstance(String param1, String param2) {
         fragement_profile_login fragment = new fragement_profile_login();
         Bundle args = new Bundle();
@@ -70,7 +74,14 @@ public class fragement_profile_login extends Fragment implements View.OnClickLis
         localDatabase = new LocalDatabase(getContext());
     }
 
-    @Override
+    /**
+     * When Fragment is loaded get username and password from the text fields
+     * Set listener for the login button
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -85,7 +96,7 @@ public class fragement_profile_login extends Fragment implements View.OnClickLis
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -137,7 +148,10 @@ public class fragement_profile_login extends Fragment implements View.OnClickLis
         });
     }
 
-    @Override
+    /**
+     * Listener for the Log in Button
+     * @param v
+     */
     public void onClick(View v) {
         String username = etusername.getText().toString();
         String password = etpassword.getText().toString();

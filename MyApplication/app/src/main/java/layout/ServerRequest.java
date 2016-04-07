@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Lotte on 29.03.2016.
+ * Class which communicates with the database
  */
 public class ServerRequest {
     ProgressDialog progressDialog;
@@ -54,6 +55,9 @@ public class ServerRequest {
 
     }
 
+    /**
+     * inner class to store the user data
+     */
     public class StoreDataAsyncTask extends AsyncTask<Void , Void , Void>
     {
         Contact contact;
@@ -65,8 +69,14 @@ public class ServerRequest {
             this.callback = callback;
         }
 
-        @Override
+        /**
+         * Send data which are stored in contact to the database
+         * uses deprecated methods
+         * @param voids
+         * @return
+         */
         protected Void doInBackground(Void... voids) {
+            //write data into list as name value pair
             ArrayList<NameValuePair> data_to_send = new ArrayList<>();
             data_to_send.add(new BasicNameValuePair("FirstName" , contact.firstname));
             data_to_send.add(new BasicNameValuePair("LastName", contact.lastname));
@@ -74,13 +84,14 @@ public class ServerRequest {
             data_to_send.add(new BasicNameValuePair("Username" , contact.username));
             data_to_send.add(new BasicNameValuePair("Password" , contact.password));
 
+            //prepare new connection
             HttpParams httpRequestParams = new BasicHttpParams();
             HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
             HttpConnectionParams.setSoTimeout(httpRequestParams , CONNECTION_TIMEOUT);
-
+            //post Php file
             HttpClient client = new DefaultHttpClient(httpRequestParams);
             HttpPost post = new HttpPost(SERVER_ADDRESS + "Register.php");
-
+            //try to set connection
             try {
                 post.setEntity(new UrlEncodedFormEntity(data_to_send));
                 client.execute(post);
@@ -102,6 +113,9 @@ public class ServerRequest {
         }
     }
 
+    /**
+     * inner class to fetch user data from the database
+     */
     public class FetchDataAsyncTask extends AsyncTask<Void , Void , Contact>
     {
         Contact contact;
@@ -116,18 +130,22 @@ public class ServerRequest {
 
         @Override
         protected Contact doInBackground(Void... voids) {
+            //prepare username and password to send to database
             ArrayList<NameValuePair> data_to_send = new ArrayList<>();
             data_to_send.add(new BasicNameValuePair("Username" , contact.username));
             data_to_send.add(new BasicNameValuePair("Password" , contact.password));
 
+            //prepare connection
             HttpParams httpRequestParams = new BasicHttpParams();
             HttpConnectionParams.setConnectionTimeout(httpRequestParams , CONNECTION_TIMEOUT);
             HttpConnectionParams.setSoTimeout(httpRequestParams , CONNECTION_TIMEOUT);
 
+            //post Php file
             HttpClient client = new DefaultHttpClient(httpRequestParams);
             HttpPost post = new HttpPost(SERVER_ADDRESS + "FetchUserData.php");
 
             Contact returnedContact = null;
+            //try to set connection and get response
             try {
                 post.setEntity(new UrlEncodedFormEntity(data_to_send));
                 HttpResponse httpResponse = client.execute(post);
@@ -135,8 +153,7 @@ public class ServerRequest {
                 HttpEntity entity = httpResponse.getEntity();
                 String result = EntityUtils.toString(entity);
 
-                Log.i("test", result);
-
+                //create new JsonObject which contains the received contact
                 JSONObject jsonObject = new JSONObject(result);
                 returnedContact = null;
 
@@ -147,6 +164,7 @@ public class ServerRequest {
                 }
                 else
                 {
+                    //read user data from JsonObject
                     String firstname,lastname,email;
                     firstname = null;
                     lastname = null;

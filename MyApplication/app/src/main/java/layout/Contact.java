@@ -2,6 +2,7 @@ package layout;
 
 /**
  * Created by Lotte on 29.03.2016.
+ * Contact class containing user data
  */
 public class Contact {
 
