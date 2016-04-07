@@ -17,6 +17,16 @@ import java.util.Map;
 
 /**
  * Created by conor on 06/04/2016.
+ *      Class requests a connection from the server using volley. Parses a JSONObject and returns 
+ *      a string containing the information from the PHP file.
+ *          - In this case, a list of the tournament games from the server.
+ *      Needs to be passed the context of the current view. 
+ *      
+ *      Class works in the background using ASyncTask, and needs to know the class that
+ *      created it.
+ *      Volley creates a request to the server that needs to be added to a queue.
+ *          - This follows the volley standard.
+ * 
  */
 public class Tour_Server_Request {
 
