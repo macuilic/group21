@@ -1,5 +1,5 @@
-<!-- XMl to design layout for a strangers profile view-->
 <?xml version="1.0" encoding="utf-8"?>
+<!-- XMl to design layout for a strangers profile view-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
