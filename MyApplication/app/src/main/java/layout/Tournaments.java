@@ -91,6 +91,7 @@ public class Tournaments extends Fragment {
                             tData[i].getNum_players() + "/" + tData[i].getMax_p(), tData[i].getTour_region());
                     tourList.addView(n);        //adding to the list viewer in the fragment
 
+                    //Variable that keeps track of the pressed tournament.
                     final int pressedTour = i;
                     n.setOnTouchListener(new View.OnTouchListener() {
                         @Override
@@ -121,7 +122,7 @@ public class Tournaments extends Fragment {
                                 //open tournament details fragment (TournamentView)
 
                                 TournamentView tourFrag = new TournamentView();
-                                tourFrag.setTournamentData(tData[pressedTour]);
+                                tourFrag.setTournamentData(tData[pressedTour]); //Sets the private Tournament_Data in fragment.
                                 android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.fragment_container, tourFrag);
                                 fragmentTransaction.addToBackStack("myscreen");    //adding to "backstack" for when back button is pressed
