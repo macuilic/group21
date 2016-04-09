@@ -7,21 +7,27 @@ import java.text.SimpleDateFormat;
 
 /**
  * Created by Conor on 02/04/2016.
- * 
+ *
  *      Class creates Tournament_Data object that stores information about a tournament.
  *      Getters allow us to retrieve the information about the tournament.
  *          - This stops data injection, and manipulation of data.
  *      Setters are used for testing.
+ *
+ *      @Tournament_Data
+ *      Contains all of the relevant info from the tournaments database, and records
+ *      ecery table into a Tournament_Data object.
  */
 
 public class Tournament_Data {
 
     private String[] tourNames;
     private String tour_name, tour_game, tour_region;
-    private int num_players, max_p, min_p, entry_fee;
-    private Timestamp tour_timestamp;
+    private int id, num_players, max_p, min_p, entry_fee;
+    private String tour_timestamp;
 
-    public Tournament_Data(String name, String game, String region, int  num_players, int max_p, int min_p, int entry_fee) {
+    public Tournament_Data(int id, String name, String game, String region, String timestamp, int num_players, int max_p, int min_p, int entry_fee) {
+
+        this.id = id;
         this.tour_name = name;
         this.tour_game = game;
         this.tour_region = region;
@@ -30,7 +36,7 @@ public class Tournament_Data {
         this.min_p = min_p;
         this.entry_fee = entry_fee;
         java.util.Date utilDate = new java.util.Date();
-        tour_timestamp = new java.sql.Timestamp(utilDate.getTime());
+        this.tour_timestamp = timestamp;
     }
 
     public Tournament_Data(String[] tour_Names) {
@@ -39,6 +45,10 @@ public class Tournament_Data {
 
     public Tournament_Data(){
 
+    }
+
+    int getId() {
+        return id;
     }
 
     String[] getTourNames() {
@@ -76,10 +86,17 @@ public class Tournament_Data {
         return entry_fee;
     }
 
-    //Is of type java.sql.Timestamp
-    Timestamp getTour_timestamp() {
-        return tour_timestamp;
+    String getTour_Date() {
+        String s = tour_timestamp.substring(0, Math.min(tour_timestamp.length(), 10));
+        s = s.replaceAll("-", "/");
+        return s;
     }
+
+    String getTour_Time() {
+        String s = tour_timestamp.substring(11, Math.min(tour_timestamp.length(), tour_timestamp.length()));
+        return s;
+    }
+
 
     void printTimeStamp() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
