@@ -5,6 +5,7 @@ import android.app.ActionBar;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -59,80 +60,112 @@ public class Tournaments extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
-        LinearLayout tourList = (LinearLayout) getView().findViewById(R.id.tourList);
+        final LinearLayout tourList = (LinearLayout) getView().findViewById(R.id.tourList);
         //declaring layout to hold the actual filter options, then hiding it
         //it will be shown when the "filterButton" in the tournament fragment is clicked, and the button will be hidden
         final LinearLayout filterLayout = (LinearLayout)getView().findViewById(R.id.filters);
         filterLayout.setVisibility(View.GONE);
-        setupFilters();
 
-        //create array of layouts that will act as items in a list of tournaments, when cliked they will open the tournament's details
-        LinearLayout[] myButtons = new LinearLayout[20];
-        for (int i = 0; i < myButtons.length;i++){
-            final LinearLayout n = tourListItem("Name", "01/12/2016", "32/40", "EU");
-            tourList.addView(n);        //adding to the list viewer in the fragment
-            n.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    //setting clickables for list items
-                    boolean down = false;
-                    boolean up = false;
-                    boolean drag = false;
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN:
-                            down = true;
-                            break;
-                        case MotionEvent.ACTION_UP:
-                            up = true;
-                            break;
-                        case MotionEvent.ACTION_MOVE:
-                            drag = true;
-                    }
-                    if (down && !drag) {
-                        //setting colour on press but not scroll
-                        n.setBackgroundColor(Color.LTGRAY);
-                    } else {
-                        //setting colour back to transparent for if dragged or released
-                        n.setBackgroundColor(Color.TRANSPARENT);
-                    }
+        // This makes a server request to our tournaments database.
+        // @getApi :    is now our instance of the tournament request, and it contains
+        //              an interface that waits for the connection to finish, and returns
+        //              a Tournament_Data array containing each entry of the database.
+        //              E.g. Every command that wants to use the returned value from
+        //              the server request must happen within onDataReceived.
+        Tour_Server_Request getApi = new Tour_Server_Request();
+        getApi.GetApi(getContext(), new Tour_Server_Request.DataListener() {
+            @Override
+            public void onDataReceived(final Tournament_Data[] tData) {
+                setupFilters(tData);
 
-                    if (up) {
-                        //open tournament details fragment (TournamentView)
-                        TournamentView tourFrag= new TournamentView();
-                        android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment_container, tourFrag);
-                        fragmentTransaction.addToBackStack("myscreen");    //adding to "backstack" for when back button is pressed
-                        fragmentTransaction.commit();
-                    }
-                    return false;
+                //create array of layouts that will act as items in a list of tournaments, when cliked they will open the tournament's details
+                LinearLayout[] myButtons;
+                if (tData.length < 20) {
+                    myButtons = new LinearLayout[tData.length];
+                } else {
+                    myButtons = new LinearLayout[20];
                 }
-            });
-            //added to list for further access if neccessary
-            myButtons[i] = n;
-        }
 
-        final Button filterButton = (Button)getView().findViewById(R.id.filterButton);
+                for (int i = 0; i < myButtons.length; i++) {
+                    final LinearLayout n = tourListItem(tData[i].getTour_name(), tData[i].getTour_Date(),
+                            tData[i].getNum_players() + "/" + tData[i].getMax_p(), tData[i].getTour_region());
+                    tourList.addView(n);        //adding to the list viewer in the fragment
 
-        filterButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //hiding "filterButton" and show filters
-                filterButton.setVisibility(View.GONE);
-                filterLayout.setVisibility(View.VISIBLE);
-            }});
-        final LinearLayout hideFilters = (LinearLayout)getView().findViewById(R.id.hideFilterButton);
-        hideFilters.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //hide filerts and show "filterButton"
-                filterButton.setVisibility(View.VISIBLE);
-                filterLayout.setVisibility(View.GONE);
-            }});
+                    final int pressedTour = i;
+                    n.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            //setting clickables for list items
+                            boolean down = false;
+                            boolean up = false;
+                            boolean drag = false;
+                            switch (event.getAction()) {
+                                case MotionEvent.ACTION_DOWN:
+                                    down = true;
+                                    break;
+                                case MotionEvent.ACTION_UP:
+                                    up = true;
+                                    break;
+                                case MotionEvent.ACTION_MOVE:
+                                    drag = true;
+                            }
+                            if (down && !drag) {
+                                //setting colour on press but not scroll
+                                n.setBackgroundColor(Color.LTGRAY);
+                            } else {
+                                //setting colour back to transparent for if dragged or released
+                                n.setBackgroundColor(Color.TRANSPARENT);
+                            }
+
+                            if (up) {
+                                //open tournament details fragment (TournamentView)
+                                TournamentView tourFrag = new TournamentView();
+                                android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                                fragmentTransaction.replace(R.id.fragment_container, tourFrag);
+                                fragmentTransaction.addToBackStack("myscreen");    //adding to "backstack" for when back button is pressed
+                                fragmentTransaction.commit();
+                            }
+                            return false;
+                        }
+                    });
+                    //added to list for further access if neccessary
+                    myButtons[i] = n;
+                }
+
+                final Button filterButton = (Button) getView().findViewById(R.id.filterButton);
+
+                filterButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        //hiding "filterButton" and show filters
+                        filterButton.setVisibility(View.GONE);
+                        filterLayout.setVisibility(View.VISIBLE);
+                    }
+                });
+                final LinearLayout hideFilters = (LinearLayout) getView().findViewById(R.id.hideFilterButton);
+                hideFilters.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        //hide filerts and show "filterButton"
+                        filterButton.setVisibility(View.VISIBLE);
+                        filterLayout.setVisibility(View.GONE);
+                    }
+                });
+            }
+        });
     }
 
-    public void setupFilters(){
+    public void setupFilters(Tournament_Data[] tData){
         Filter[] filters = new Filter[2];
-        //example filters as backend has not been implemented yet
-        String[] games = {"All", "CSGO", "Hearthstone", "DOTA", "League of Legends"};
-        String[] regions = {"All", "EUW", "NA", "RU", "EUNE"};
+
+        //MAking the size of the array one bigger in order to contain "All" in our choices.
+        String[] games = new String[tData.length+1];
+        String[] regions = new String[tData.length+1];
+        games[0] = "All";
+        regions[0] = "All";
+        for (int i = 0; i < tData.length; i++) {
+            games[i+1] = tData[i].getTour_game();
+            regions[i+1] = tData[i].getTour_region();
+        }
+
         filters[0] = new Filter("Game", games);
         filters[1] = new Filter("Region",regions);
         final LinearLayout filterLayout = (LinearLayout)getView().findViewById(R.id.filters);
