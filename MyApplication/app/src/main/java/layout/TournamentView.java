@@ -1,5 +1,6 @@
 package layout;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.johnmilsom.ggleaguesv1local.R;
 
@@ -24,6 +26,11 @@ public class TournamentView extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    public static TextView tvTourNameView;
+    public static TextView tvTourDate;
+
+    //When a new TournamentView is created, it contains the data of the relevant tournament.
+    private static Tournament_Data tData;
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
     public static int int_items = 3 ;
@@ -31,8 +38,8 @@ public class TournamentView extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    @SuppressLint("ValidFragment")
     public TournamentView() {
-        // Required empty public constructor
     }
     public static TournamentView newInstance(String param1, String param2) {
         TournamentView fragment = new TournamentView();
@@ -59,9 +66,16 @@ public class TournamentView extends Fragment {
         /**
          *Inflate tab_layout and setup Views.
          */
+
         View x =  inflater.inflate(R.layout.fragment_tournament_view,null);
         tabLayout = (TabLayout) x.findViewById(R.id.tabs);
         viewPager = (ViewPager) x.findViewById(R.id.viewpager);
+
+        tvTourNameView = (TextView) x.findViewById(R.id.textViewTourView);
+        tvTourDate = (TextView) x.findViewById(R.id.textViewTourDate);
+
+        tvTourNameView.setText(tData.getTour_name());
+        tvTourDate.setText(tData.getTour_Date());
 
         /**
          *Set an Apater for the View Pager
@@ -77,6 +91,9 @@ public class TournamentView extends Fragment {
         return x;
     }
 
+    public void setTournamentData (Tournament_Data tournament_data) {
+        this.tData = tournament_data;
+    }
     class MyAdapter extends FragmentPagerAdapter {
 
         public MyAdapter(FragmentManager fm) {

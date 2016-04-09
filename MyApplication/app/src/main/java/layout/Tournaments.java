@@ -119,7 +119,9 @@ public class Tournaments extends Fragment {
 
                             if (up) {
                                 //open tournament details fragment (TournamentView)
+
                                 TournamentView tourFrag = new TournamentView();
+                                tourFrag.setTournamentData(tData[pressedTour]);
                                 android.support.v4.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                                 fragmentTransaction.replace(R.id.fragment_container, tourFrag);
                                 fragmentTransaction.addToBackStack("myscreen");    //adding to "backstack" for when back button is pressed
